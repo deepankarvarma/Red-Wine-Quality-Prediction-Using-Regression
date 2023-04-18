@@ -1,10 +1,10 @@
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
-
+from sklearn.linear_model import RidgeCV
 
 # Load the dataset into a pandas dataframe
-df = pd.read_csv('winequality-red.csv')
+df = pd.read_csv("winequality-red.csv")
 
 
 # Check for missing values
@@ -15,18 +15,20 @@ df.fillna(df.mean(), inplace=True)
 
 # # Check for outliers
 # # You can use box plots or scatter plots to identify outliers
-# # Remove outliers that are more than 3 standard deviations away from the mean
-df = df[(df['quality'] - df['quality'].mean()).abs() < 3 * df['quality'].std()]
+# # Remove outliers that are more than 2 standard deviations away from the mean
+df = df[(df["quality"] - df["quality"].mean()).abs() < 2 * df["quality"].std()]
 
 # # Check for correlations
 corr_matrix = df.corr()
-print(corr_matrix['quality'].sort_values(ascending=False))
+print(corr_matrix["quality"].sort_values(ascending=False))
 
 # Split the dataset into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(df.drop('quality', axis=1), df['quality'], test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(
+    df.drop("quality", axis=1), df["quality"], test_size=0.2, random_state=42
+)
 
 # Train a random forest regression model on the training set
-model = RandomForestRegressor(n_estimators=100, random_state=42)
+model = RandomForestRegressor(n_estimators=100, random_state=42,max_depth=500)
 model.fit(X_train, y_train)
 
 # Evaluate the model on the testing set and print the R2 score
