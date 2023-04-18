@@ -4,4 +4,4 @@
 ### Linear Regression :- 59.11
 ### Ridge Regression :- 46.26
 ### Dataset Link :- https://www.kaggle.com/datasets/uciml/red-wine-quality-cortez-et-al-2009
-### Streamlit Link :- https://www.kaggle.com/datasets/uciml/red-wine-quality-cortez-et-al-2009
+### Streamlit Link :- https://deepankarvarma-red-wine-quality-prediction-using-reg-app-usduxo.streamlit.app/
